@@ -1,0 +1,1 @@
+/usr/bin/my_dmenu.sh

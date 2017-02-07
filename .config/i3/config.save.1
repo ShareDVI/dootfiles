@@ -1,0 +1,193 @@
+qqq# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Win
+
+set $mod Mod4 
+
+# Alt
+set $rmod Mod1
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:Droid Sans 14
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+floating_minimum_size 75 x 50
+floating_maximum_size 1920x1080
+
+# start a terminal
+# Mod+Enter
+bindcode $mod+36 exec i3-sensible-terminal
+
+
+# kill focused window
+# Mod+w
+bindcode $mod+25 kill
+
+# start dmenu (a program launcher)
+# Mod+Shift+R
+bindcode $mod+Shift+27 exec dmenu_run
+
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# Mod+r
+bindcode $mod+27 exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+# Mod+jkl;
+bindcode $mod+44 focus left
+bindcode $mod+45 focus down
+bindcode $mod+46 focus up
+bindcode $mod+47 focus right
+
+# alternatively, you can use the cursor keys:
+# Mod+arrows
+bindcode $mod+113 focus left
+bindcode $mod+116 focus down
+bindcode $mod+111 focus up
+bindcode $mod+114 focus right
+
+# move focused window
+#mod+shift+JKL:
+bindcode $mod+Shift+44 move left
+bindcode $mod+Shift+45 move down
+bindcode $mod+Shift+46 move up
+bindcode $mod+Shift+47 move right
+
+# alternatively, you can use the cursor keys:
+#mod+Shift+jkl:
+bindcode $mod+Shift+113 move left
+bindcode $mod+Shift+116 move down
+bindcode $mod+Shift+111 move up
+bindcode $mod+Shift+114 move right
+
+
+# split in horizontal orientation
+#mod+h
+bindcode $mod+43 split h
+
+# split in vertical orientation
+#mod+v
+bindcode $mod+55 split v
+
+# enter fullscreen mode for the focused container
+#mod+f
+bindcode $mod+41 fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+
+#Mod+S
+bindcode $mod+39 layout stacking
+#Mod+G
+bindcode $mod+42 layout tabbed
+#Mod+D
+bindcode $mod+40 layout toggle split
+
+# toggle tiling / floating
+#Mod+Space
+bindcode $mod+65 floating toggle
+
+# change focus between tiling / floating windows
+#Mod+D
+bindcode $rmod+65 focus mode_toggle
+
+# focus the parent container
+#Mod+a
+bindcode $mod+38 focus parent
+
+
+# focus the child container
+#Mod+z
+bindcode $mod+52 focus child
+
+# Switch to urgent
+#mod+x
+bindcode $mod+53 [urgent=latest] focus
+
+# switch to workspace
+#Mod+digits
+bindcode $mod+10 workspace 1
+bindcode $mod+11 workspace 2
+bindcode $mod+12 workspace 3
+bindcode $mod+13 workspace 4
+bindcode $mod+14 workspace 5
+bindcode $mod+15 workspace 6
+bindcode $mod+16 workspace 7
+bindcode $mod+17 workspace 8
+bindcode $mod+18 workspace 9
+bindcode $mod+19 workspace 10
+
+# move focused container to workspace
+#mod+shift+digits
+bindcode $mod+Shift+10 move container to workspace 1
+bindcode $mod+Shift+11 move container to workspace 2
+bindcode $mod+Shift+12 move container to workspace 3
+bindcode $mod+Shift+13 move container to workspace 4
+bindcode $mod+Shift+14 move container to workspace 5
+bindcode $mod+Shift+15 move container to workspace 6
+bindcode $mod+Shift+16 move container to workspace 7
+bindcode $mod+Shift+17 move container to workspace 8
+bindcode $mod+Shift+18 move container to workspace 9
+bindcode $mod+Shift+19 move container to workspace 10
+
+# reload the configuration file
+#mod+shift-c
+bindcode $mod+Shift+54 reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+#mod-shift-f5
+bindcode $mod+Shift+71 restart
+# exit i3 (logs you out of your X session)
+# mod-shift-q
+bindcode $mod+Shift+24 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+#alt+jkl:/arrows
+
+# resize
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+bindcode $rmod+44 resize shrink width 10 px or 10 ppt
+bindcode $rmod+45 resize grow height 10 px or 10 ppt
+bindcode $rmod+46 resize shrink height 10 px or 10 ppt
+bindcode $rmod+47 resize grow width 10 px or 10 ppt
+# same bindings, but for the arrow keys
+bindcode $rmod+113 resize shrink width 10 px or 10 ppt
+bindcode $rmod+116 resize grow height 10 px or 10 ppt
+bindcode $rmod+111 resize shrink height 10 px or 10 ppt
+bindcode $rmod+114 resize grow width 10 px or 10 ppt
+
+
+
+# The middle button over a titlebar kills the window
+bindsym --release button2 kill
+
+# The right button toggles floating
+bindsym --release button3 floating toggle
+bindsym --release $mod+button3 floating toggle
+
+
+
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status
+}
