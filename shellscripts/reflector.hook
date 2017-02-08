@@ -1,0 +1,12 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = pacman-mirrorlist
+
+[Action]
+When = PostTransaction
+Depends = reflector
+Exec = /usr/bin/mv -f /etc/pacman.d/mirrorlist.pacnew /etc/pacman.d/mirrorlist > /dev/null 2>&1
+Exec = /usr/bin/reflector -l 50 -n 20 --sort rate --threads 4  --save /etc/pacman.d/mirrorlist
+Description = Определение лучших зеркал при помощи reflector...
